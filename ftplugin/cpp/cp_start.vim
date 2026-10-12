@@ -3,10 +3,10 @@
 "   :CP              " 默认生成 sol.cpp
 "   :CP abc.cpp      " 生成指定文件
 
-if exists('g:loaded_cp_start')
+if exists('b:did_cpp_cp_start')
   finish
 endif
-let g:loaded_cp_start = 1
+let b:did_cpp_cp_start = 1
 
 function! s:CreateContestFile(name) abort
   let l:name = a:name
@@ -37,14 +37,11 @@ function! s:CreateContestFile(name) abort
   let l:template = [
         \ '#include <bits/stdc++.h>',
         \ '',
-        \ 'using std::cin;',
-        \ 'using std::cout;',
-        \ '',
         \ 'int main() {',
-        \ '  std::ios::sync_with_stdio(false);',
-        \ '  std::cin.tie(nullptr);',
+        \ "\tstd::ios::sync_with_stdio(false);",
+        \ "\tstd::cin.tie(nullptr);",
         \ '',
-        \ '  return 0;',
+        \ "\treturn 0;",
         \ '}',
         \ ]
   call setline(1, l:template)
@@ -53,8 +50,8 @@ function! s:CreateContestFile(name) abort
   endif
   silent! write
   execute 'normal! gg'
-  call cursor(8, 5)
+  call cursor(5, 5)
   echom '已生成 ' . l:name
 endfunction
 
-command! -nargs=? -complete=file CP call <SID>CreateContestFile(<q-args>)
+command! -buffer -nargs=? -complete=file CP call <SID>CreateContestFile(<q-args>)
