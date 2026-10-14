@@ -5,6 +5,6 @@ endif
 let b:did_cpp_ftplugin = 1
 
 setlocal noexpandtab
-setlocal tabstop=4
-setlocal shiftwidth=4
-setlocal softtabstop=4
+setlocal tabstop=2
+setlocal shiftwidth=2
+setlocal softtabstop=2

@@ -11,7 +11,7 @@ let b:did_cpp_cp_start = 1
 function! s:CreateContestFile(name) abort
   let l:name = a:name
   if empty(l:name)
-    let l:name = input('竞赛文件名 [main.cpp]: ', 'sol.cpp')
+    let l:name = input('set name [sol.cpp]: ', 'sol.cpp')
   endif
 
   if empty(l:name)
@@ -37,9 +37,11 @@ function! s:CreateContestFile(name) abort
   let l:template = [
         \ '#include <bits/stdc++.h>',
         \ '',
+        \ 'using namespace std;',
+        \ '',
         \ 'int main() {',
-        \ "\tstd::ios::sync_with_stdio(false);",
-        \ "\tstd::cin.tie(nullptr);",
+        \ "\tios::sync_with_stdio(false);",
+        \ "\tcin.tie(nullptr);",
         \ '',
         \ "\treturn 0;",
         \ '}',
@@ -50,7 +52,7 @@ function! s:CreateContestFile(name) abort
   endif
   silent! write
   execute 'normal! gg'
-  call cursor(5, 5)
+  call cursor(7, 5)
   echom '已生成 ' . l:name
 endfunction
 
